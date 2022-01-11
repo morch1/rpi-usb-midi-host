@@ -26,7 +26,7 @@ it may need to be modified to work with other models
 
 1. make the script auto-run when devices are connected
 
-    one way is to create udev rules for your devices:
+    one way is to create udev rules for your devices, for example:
 
     ```
     # /etc/udev/rules.d/midihost.rules
