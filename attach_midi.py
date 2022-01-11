@@ -5,7 +5,7 @@ import sys
 import subprocess
 
 sys.path.append('/boot/midihost')
-import config
+import midihost_config
 
 card_id_regex = r'^\s*([0-9]+)\s*\[.*$'
 usb_id_regex = r'^.*usb-1\.([0-9]+).*$'
@@ -33,7 +33,7 @@ for line in aconnect_result.stdout.splitlines():
     if match:
         usb_client_map[int(card_usb_map[match.group(2)])] = int(match.group(1))
 
-for (src_usb_port, src_port), *dsts in config.CONNECTIONS:
+for (src_usb_port, src_port), *dsts in midihost_config.CONNECTIONS:
     for (dst_usb_port, dst_port) in dsts:
         try:
             subprocess.run(['aconnect', f'{usb_client_map[src_usb_port]}:{src_port}',  f'{usb_client_map[dst_usb_port]}:{dst_port}'])
